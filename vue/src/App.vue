@@ -4,7 +4,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-          <a class="navbar-brand" href="#">Your Logo</a>
+          <a class="navbar-brand" href="#">buy-sale</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,8 @@
                 <a class="nav-link" href="#">Sell</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <router-link class="nav-link"
+                :to="{ name: 'login' }">login</router-link>⠀
               </li>
               <li class="nav-item">
                 <a class="nav-link btn btn-warning text-dark" href="#">Post a Free Ad</a>
@@ -46,13 +47,8 @@ import { useAlertsStore } from '@/stores/store.js';
 
 const route = useRoute();
 const name = ref(null)
-const { getBooks, getDate } = useAlertsStore();
+const { getDate } = useAlertsStore();
 
-
-
-const searchBooks = () => {
-  getBooks('Библия');
-}
 </script>
 
 <style scoped></style>

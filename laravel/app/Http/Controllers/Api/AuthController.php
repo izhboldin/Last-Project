@@ -3,28 +3,30 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
 
         $user = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'password' => $request->get('password'),
-        ]);
+            'password' => Hash::make($request->get('password')),
+        ])->fresh();
 
-        Auth::login($user);
 
         $token = $user->createToken('Token Name')->plainTextToken;
 
         return [
-            'user' => $user,
+            'user' => new UserResource($user),
             'token' => $token,
         ];
     }
@@ -34,7 +36,6 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = $request->user();
 
-            Auth::login($user);
 
             $user->tokens()
                 ->where('name', 'Token Name')
@@ -43,7 +44,7 @@ class AuthController extends Controller
 
             return [
                 'token' => $token,
-                'user' => $user,
+                'user' =>  new UserResource($user),
             ];
         } else {
             return response()->json([
@@ -55,7 +56,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Session::flush();
-        Auth::logout();
 
         return response()->json([
             'message' => 'Successfully logged out'

@@ -6,42 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <title>Document</title>
+    <style>
+        .sticky-top {
+            position: -webkit-sticky;
+            position: sticky;
+            height: 100vh;
+            top: 0;
+            z-index: 1020;
+        }
+    </style>
+    <title> </title>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Адмін Панель</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/admin-panel">Головна <span class="sr-only">(Поточна)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Модерація оголошень</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Управління акаунтами</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Рішення конфліктів</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Блокування користувачів</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar sticky-top">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Orders
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-3">
+                <h2>This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some example content. You can add more content here.This is some e</h2>
+                <p>This is some example content. You can add more content here.</p>
+                <!-- Add more content as needed -->
+            </main>
         </div>
-    </nav>
-    @foreach ($tests as $test)
-        <p>{{ $test->name }}</p>
-    @endforeach
+    </div>
+
 
 </body>
 

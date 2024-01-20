@@ -1,50 +1,78 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import axiosInstance from '@/services/axios.js';
+import { useRouter } from 'vue-router'
+import Cookies from 'js-cookie';
 
 
 export const useAlertsStore = defineStore('alerts', () => {
-  const books = ref([]);
-  const bookNum = ref(null);
-  
+    const user = ref(null);
+    const token = ref(null);
 
-  const getBooks = async (searchTerm, category = '', sort = 'relevance') => {
-    books.value = [];
-    try {
-      let result = await axiosInstance.get(`?q=${searchTerm}+subject:${category}&maxResults=40&&orderBy=${sort}&key=AIzaSyD_JUf6Lz0dvjlTANO6yoD3318LCHIemdc`);
+    const getUser = computed(() => user.value)
+    const getToken = computed(() => token.value)
 
-      if (result.data && result.data.items) {
-        result.data.items.forEach((item) => books.value.push(item))
-        console.log(result);
-        return
-      } else {
-        console.error("Получены некорректные данные");
-      }
-    } catch (error) {
-      console.error("Произошла ошибка при выполнении запроса:", error);
+    const register = async (date) => {
+        try {
+            let result = await axiosInstance.post('/api/register', date);
+
+            console.log(result);
+            if (result.data.user && result.data.token) {
+                user.value = result.data.user;
+                token.value = result.data.token;
+                Cookies.set('token', token.value);
+            }
+        } catch (error) {
+            console.error("Произошла ошибка при выполнении запроса:", error);
+        }
     }
-  }
 
-  const getDate = async (date) => {
-    books.value = [];
-    try {
-      let result = await axiosInstance.post('/api/test', date);
+    const login = async (date) => {
+        try {
+            let result = await axiosInstance.post('/api/login', date);
 
-      // if (result.data && result.data.items) {
-      //   result.data.items.forEach((item) => books.value.push(item))
-      //   console.log(result);
-      //   return
-      // } else {
-      //   console.error("Получены некорректные данные");
-      // }
-      console.log(result);
-    } catch (error) {
-      console.error("Произошла ошибка при выполнении запроса:", error);
+            // if(result.data.user && result.data.token){
+            //   user.value = result.data.user;
+            //   token.value = result.data.token;
+            // }
+            console.log(result);
+        } catch (error) {
+            console.error("Произошла ошибка при выполнении запроса:", error);
+        }
     }
-  }
- 
-  return {
-    getBooks,
-    getDate,
-  }
+    const getDataUser = async () => {
+        try {
+            if (!Cookies.get('token')) {
+                return
+            }
+            if (user === null) {
+                return
+            }
+            token.value = Cookies.get('token');
+            let result = await axiosInstance.get('/api/user',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token.value}`,
+                    },
+                });
+            user.value = result.data;
+            // if(result.data.user && result.data.token){
+            //   user.value = result.data.user;
+            //   token.value = result.data.token;
+            // }
+            console.log(result.data);
+            console.log(user.value);
+            // const router = useRouter();
+        } catch (error) {
+            console.error("Произошла ошибка при выполнении запроса:", error);
+        }
+    }
+
+    return {
+        register,
+        login,
+        getUser,
+        getToken,
+        getDataUser
+    }
 })
